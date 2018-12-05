@@ -7,20 +7,28 @@ using namespace std;
 int main()
 {
  string message;
- Chirp newChirp;
+ string handle;
+ Account person; 
 
- cout<<"Enter message: ";
- cin>>message;
+ cout<<"Chirper Login: ";
+ cin>>handle;
 
- if( newChirp.createChirp(message) )
+ do
  {
-   cout<<"Chirp created!\n";
- }
- else
- {
-   cout<<"Chirp is limited to 140 characters.\n";
- }
+   cout<<"Enter message (or Q to quit): ";
+   cin>>message;
 
+   if( person.addChirp(message) )
+   {
+     cout<<"Chirp created!\n";
+   }
+   else
+   {
+     cout<<"Chirp is limited to 140 characters.\n";
+   }
+ }while(message != 'q' && message != 'Q');
+
+ person.showChirps();
 
  return 0;
 }
