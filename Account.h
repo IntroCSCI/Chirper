@@ -10,6 +10,7 @@ class Account
     std::string m_id;
     std::vector <Chirp> m_chirps;
   public:
+    Account(); // constructor
     bool addChirp(std::string);
     void showChirps();
     void setAccountID(std::string);

@@ -7,29 +7,33 @@ using namespace std;
 
 int main()
 {
- string message;
- string handle;
- Account person; 
+        string message;
+        string handle;
+        Account person; 
 
- cout<<"Chirper Login: ";
- cin>>handle;
- person.setAccountID(handle);
- do
- {
-   cout<<"Enter message (or Q to quit): ";
-   cin>>message;
+        cout<<"Chirper Login: ";
+        cin>>handle;
+        cin.ignore(); //discards newline so we can use getline() later
+        person.setAccountID(handle);
+        do
+        {
+                cout<<"Enter message (or Q to quit): ";
+                getline(cin,message);
 
-   if( person.addChirp(message) )
-   {
-     cout<<"Chirp created!\n";
-   }
-   else
-   {
-     cout<<"Chirp is limited to 140 characters.\n";
-   }
- }while(message != "q" && message != "Q");
+                if( message != "q" && message != "Q" )
+                {
+                        if( person.addChirp(message) )
+                        {
+                                cout<<"Chirp created!\n";
+                        }
+                        else
+                        {
+                                cout<<"Chirp is limited to 140 characters.\n";
+                        }
+                }
+        }while(message != "q" && message != "Q");
 
- person.showChirps();
+        person.showChirps();
 
- return 0;
+        return 0;
 }
