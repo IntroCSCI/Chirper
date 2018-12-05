@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Chirp.h"
+#include "Account.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int main()
 
  cout<<"Chirper Login: ";
  cin>>handle;
-
+ person.setAccountID(handle);
  do
  {
    cout<<"Enter message (or Q to quit): ";
@@ -26,7 +27,7 @@ int main()
    {
      cout<<"Chirp is limited to 140 characters.\n";
    }
- }while(message != 'q' && message != 'Q');
+ }while(message != "q" && message != "Q");
 
  person.showChirps();
 
