@@ -8,6 +8,7 @@ class Chirp
   std::string text;
 
   public:
+  Chirp();
   bool createChirp(std::string);
   std::string getChirp();
 };

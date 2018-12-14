@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Chirp.h"
+#include "Bitmap/bitmap.h"
 
 class Account
 {
@@ -12,6 +13,7 @@ class Account
   public:
     Account(); // constructor
     bool addChirp(std::string);
+    bool addPictureChirp(std::string, Bitmap);
     void showChirps();
     void setAccountID(std::string);
 };

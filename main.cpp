@@ -2,14 +2,15 @@
 #include <string>
 #include "Chirp.h"
 #include "Account.h"
+#include "Bitmap/bitmap.h"
 
 using namespace std;
 
 int main()
 {
-        string message;
-        string handle;
-        Account person; 
+        string message, response, handle, file;
+        Account person;
+        Bitmap image;
 
         cout<<"Chirper Login: ";
         cin>>handle;
@@ -17,18 +18,34 @@ int main()
         person.setAccountID(handle);
         do
         {
+                bool success = false;
+
                 cout<<"Enter message (or Q to quit): ";
                 getline(cin,message);
 
                 if( message != "q" && message != "Q" )
                 {
-                        if( person.addChirp(message) )
+                        cout<<"Attach picture to chirp (yes/no)? ";
+                        cin>>response; 
+                        cin.ignore();
+
+                        if( response == "yes" )
                         {
-                                cout<<"Chirp created!\n";
+                                cout<<"Enter filename: ";
+                                cin>>file;
+                                cin.ignore();
+                                image.open(file);
+
+                                success = person.addPictureChirp(message,image);
                         }
                         else
                         {
-                                cout<<"Chirp is limited to 140 characters.\n";
+                                success = person.addChirp(message);
+                        }
+
+                        if( success )
+                        {
+                                cout<<"Chirp created!\n";
                         }
                 }
         }while(message != "q" && message != "Q");

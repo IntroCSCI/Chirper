@@ -1,13 +1,16 @@
 #include "Chirp.h"
+#include "PictureChirp.h"
 #include "Account.h"
 #include <vector>
 #include <string>
 #include <iostream>
+#include "Bitmap/bitmap.h"
 
 //Class constructor makes the id empty by default
 Account::Account()
 {
   m_id = "";
+//  std::cout<<"--> Account's constructor called.\n";
 }
 
 //Adds a new chirp to the account's list of chirps, if it is under 140
@@ -17,6 +20,19 @@ bool Account::addChirp(std::string chirpText)
 {
   Chirp newChirp;
   bool created = newChirp.createChirp(chirpText);
+
+  if( created == true )
+  {
+    m_chirps.push_back(newChirp);
+  }
+  return created;
+}
+
+
+bool Account::addPictureChirp(std::string chirpText, Bitmap chirpImage)
+{
+  PictureChirp newChirp;
+  bool created = newChirp.createPictureChirp(chirpText, chirpImage);
 
   if( created == true )
   {
